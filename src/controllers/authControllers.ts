@@ -51,7 +51,7 @@ export const loginUser =  async( req: Request, res: Response) => {
         const isMatch = await bcrypt.compare(password, foundUser.hashedPassword);
         
         if(isMatch) {
-            const accessToken =  jwt.sign({email: foundUser.email}, process.env.ACCESS_TOKEN, {expiresIn: '25m'});
+            const accessToken =  jwt.sign({email: foundUser.email}, process.env.ACCESS_TOKEN, {expiresIn: '1m'});
             const refreshToken = jwt.sign({email: foundUser.email}, process.env.REFRESH_TOKEN, {expiresIn: '7d'});
 
             //update the user with the refresh token
