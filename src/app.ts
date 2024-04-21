@@ -4,6 +4,8 @@ import http from 'http';
 import authRouter from './routes/authRouter';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
+import userRouter from './routes/userRouter'
+import {verifyToken} from './middleware/verifyToken';
 import express from 'express';
 
 const app = express();
@@ -19,6 +21,8 @@ const server = http.createServer(app);
 
 //routes
 app.use('/api/v1/', authRouter);
+app.use(verifyToken)
+app.use('/get/users', userRouter);
 
 
 
