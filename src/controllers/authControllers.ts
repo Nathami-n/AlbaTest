@@ -55,9 +55,9 @@ export const loginUser =  async( req: Request, res: Response) => {
             const refreshToken = jwt.sign({email: foundUser.email}, process.env.REFRESH_TOKEN, {expiresIn: '7d'});
 
             //update the user with the refresh token
-            const updateUser = await User.findOneAndUpdate(email, { authentication: {refreshToken: refreshToken}});
+            const updateUser = await User.findOneAndUpdate({email}, { authentication: {refreshToken: refreshToken}});
             res.cookie('jwt', accessToken, {httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000} );
-            res.json({accessToken});
+            res.json({accessToken, user: updateUser});
         }
     } catch(err) {
         console.error(err);
