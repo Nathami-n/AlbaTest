@@ -1,6 +1,5 @@
 import {Schema, model} from 'mongoose';
 
-
 const UserSchema = new Schema({
     user_name: {
         type: String,
@@ -16,7 +15,12 @@ const UserSchema = new Schema({
         default: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
     },
 
-    authentication: {
-        
+    hashedPassword: {
+        type: String,
+        required: true,
     }
-})
+},
+{timestamps:true}
+);
+
+ export const User = model("User", UserSchema);
