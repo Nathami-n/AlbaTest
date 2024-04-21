@@ -18,6 +18,11 @@ const UserSchema = new Schema({
     hashedPassword: {
         type: String,
         required: true,
+    },
+    authentication: {
+        refreshToken: {
+            type: String,
+        }
     }
 },
 {timestamps:true}

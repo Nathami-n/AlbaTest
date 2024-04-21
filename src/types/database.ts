@@ -3,4 +3,5 @@
     email: string;
     avatar?: string;
     hashedPassword: string;
+    authentication?: object;
 }
