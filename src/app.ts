@@ -1,6 +1,7 @@
 import {connectDb} from './utils/connectDb';
 import {PORT, MONGO_URI} from './config/connection';
 import http from 'http';
+import authRouter from './routes/authRouter';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import express from 'express';
@@ -16,6 +17,9 @@ app.use(cookieParser());
 //connect 
 const server = http.createServer(app);
 
+//routes
+app.use('/api/v1/', authRouter);
+
 
 
 const makeConnection =  async () => {
@@ -29,3 +33,5 @@ const makeConnection =  async () => {
         console.error(e);
     }
 }
+
+makeConnection();
