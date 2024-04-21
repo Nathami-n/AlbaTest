@@ -56,7 +56,7 @@ export const loginUser =  async( req: Request, res: Response) => {
 
             //update the user with the refresh token
             const updateUser = await User.findOneAndUpdate({email}, { authentication: {refreshToken: refreshToken}});
-            res.cookie('jwt', accessToken, {httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000} );
+            res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000} );
             res.json({accessToken, user: updateUser});
         }
     } catch(err) {

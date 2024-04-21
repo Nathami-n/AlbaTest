@@ -2,6 +2,7 @@ import {connectDb} from './utils/connectDb';
 import {PORT, MONGO_URI} from './config/connection';
 import http from 'http';
 import authRouter from './routes/authRouter';
+import refreshTokenRouter from './routes/refreshTokenRouter'
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import userRouter from './routes/userRouter'
@@ -21,6 +22,7 @@ const server = http.createServer(app);
 
 //routes
 app.use('/api/v1/', authRouter);
+app.use('/refresh', refreshTokenRouter);
 app.use(verifyToken)
 app.use('/get/users', userRouter);
 
